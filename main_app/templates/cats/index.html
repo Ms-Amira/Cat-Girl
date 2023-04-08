@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>List Of Foster Cats</h1>
+<h1>List of Foster Cats</h1>
 
 {% for cat in cats %}
-  <div class="card">
-    <div class="card-content">
+  <div class="card card-panel deep-purple accent-4 card-panel hoverable">
+    <div class="card-content deep-purple accent-1">
       <span class="card-title">{{ cat.name }}</span>
       <p>Breed: {{ cat.breed }}</p>
       <p>Description: {{ cat.description }}</p>
-      {% if cat.age > 0 %}
+      {% if cat.age > 2 %}
         <p>Age: {{ cat.age }}</p>
       {% else %}
         <p>Age: Kitten</p>
       {% endif %}
-      <a class="btn-floating btn-large waves-effect waves-light pink"><i class="material-icons">♡</i></a>
+      <a href="/cats/{{cat.id}}" class="btn-floating pulse-light pink"><i class="material-icons">♡</i></a>
     </div>
   </div>
 {% endfor %}
