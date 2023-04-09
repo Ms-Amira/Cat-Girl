@@ -4,7 +4,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    /* cursor: url('https://i.imgur.com/Pr8Gm4i.png'), auto; */
   }
   
   main {
@@ -16,13 +15,14 @@ body {
     text-align: right;
   }  
 
+  .about {
+    font-size: large;
+    text-align: center;
+  }
+
   p {
     font-size: large;
   }
-
-  /* .custom-cur {
-    cursor: url('/images/droplet.svg');
-  } */
 
   .catpic {
     position: relative;
@@ -31,11 +31,11 @@ body {
   }
 
     
-   #luna {
+.luna {
     background: url(https://www.indiancreekbengals.com/img/kittens/snow/snow15.png) no-repeat center 200px;
   }
 
-  .noodles {
+.noodles {
     background: url(https://cdn.shopify.com/s/files/1/0244/7851/5263/products/10_2_1_1024x.jpg?v=1665643467) no-repeat center center fixed;
   }
 
@@ -52,9 +52,5 @@ body {
     color:plum;
     text-decoration-line: underline;
     text-shadow: 2px 2px 5px cornflowerblue;
-    font-family: fantasy;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-/* 
-  .card-content {
-    font-family: fantasy;
-  } */

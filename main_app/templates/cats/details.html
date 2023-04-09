@@ -23,13 +23,19 @@
       </header>
       
     <h1>{{cats.name}}</h1>
-    <html id="luna"></html>
+    {% for cats in cat %}
+    <div>
+        <h1>{{ cats.name }}</h1>
+        <img src="{{cats.picture}}">
+    </div>
+{% endfor %}
+    <!-- <html class="luna"></html>
     <html class="noodles"></html>
     <html class="void"></html>
-    <html class="japudji"></html>
-    <!-- <footer class="page-footer panel deep-purple accent-2">
-        <div class="right">All Rights Reserved, &copy; 2023 Cat Girl &nbsp;</div>
-      </footer> -->
-</body>
-</html>
+    <html class="japudji"></html> -->
+  </body>
+  </html>
+  <!-- <footer class="page-footer panel deep-purple accent-2">
+      <div class="right">All Rights Reserved, &copy; 2023 Cat Girl &nbsp;</div>
+    </footer> -->
 <div align="center" style="z-index:9;visibility:visible;"><a href="https://www.totallyfreecursors.com/" target="_blank" class="tfc"></a></div><style>HTML,BODY{cursor: url("https://downloads.totallyfreecursors.com/cursor_files/cat11.ani"), url("https://downloads.totallyfreecursors.com/thumbnails/cat12.gif"), auto;}</style>
