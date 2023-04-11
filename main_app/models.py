@@ -7,6 +7,8 @@ class Cat(models.Model):
     breed = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     age = models.IntegerField()
+    image = models.TextField()
+    temperment = models.TextField()
 
     def get_absolute_url(self):
         return reverse('details', kwargs={'cat_id': self.id})

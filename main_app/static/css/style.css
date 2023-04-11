@@ -30,21 +30,10 @@ body {
     left: 250px;
   }
 
-    
-.luna {
-    background: url(https://www.indiancreekbengals.com/img/kittens/snow/snow15.png) no-repeat center 200px;
-  }
-
-.noodles {
-    background: url(https://cdn.shopify.com/s/files/1/0244/7851/5263/products/10_2_1_1024x.jpg?v=1665643467) no-repeat center center fixed;
-  }
-
-.void {
-  background: url(https://www.rd.com/wp-content/uploads/2021/01/GettyImages-1175550351.jpg) no-repeat center center fixed;
-}
-
-.japudji {
-  background: url(https://i.imgur.com/lgeXd56.jpg) no-repeat center center fixed;
+img {
+  position: relative;
+  align-self: center;
+  left: 250px;
 }
 
   h1 {

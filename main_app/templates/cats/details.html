@@ -13,7 +13,7 @@
     <header class="navbar-fixed">
         <nav>
           <div class="nav-wrapper deep-purple accent-2">
-            <a class="brand-logo left"><img src="https://i.imgur.com/Ryz76fa.jpg" width="58"></a>
+            <a class="brand-logo left"><img class="brand-logo" src="https://i.imgur.com/Ryz76fa.jpg" width="58"></a>
             <ul class="right">
                 <li><a href="/">Home</a></li>
                 <li><a href="/cats">View My Babies</a></li>
@@ -22,17 +22,17 @@
         </nav>
       </header>
       
-    <h1>{{cats.name}}</h1>
-    {% for cats in cat %}
+
     <div>
         <h1>{{ cats.name }}</h1>
-        <img src="{{cats.picture}}">
+        <img src="{{cats.image}}">
+        <p>"{{cats.temperment}}"</p>
     </div>
-{% endfor %}
+
 
 <div class="card-action">
-  <a href="cats/{{cat.id}}/update">Edit</a>
-  <a href="cats/{{cat.id}}/delete">Delete</a>
+  <a href="{% url 'cats_update' cats.id %}">Edit</a>
+  <a href="{% url 'cats_delete' cats.id %}">Delete</a>
 </div>
 
   </body>
