@@ -30,16 +30,15 @@ body {
     left: 250px;
   }
 
-img {
-  position: relative;
-  align-self: center;
-  left: 250px;
-}
-
   h1 {
     text-align: center;
     color:plum;
     text-decoration-line: underline;
     text-shadow: 2px 2px 5px cornflowerblue;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+#brand-logo {
+position: relative;
+left: 0px;
   }

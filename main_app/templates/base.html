@@ -8,12 +8,13 @@
   <title>Cat Girl</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper deep-purple accent-2">
-        <a class="brand-logo left"><img src="https://i.imgur.com/Ryz76fa.jpg" width="58"></a>
+        <a class="brand-logo left"><img id="brand-logo" src="https://i.imgur.com/Ryz76fa.jpg" width="58"></a>
         <ul class="right">
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'create_cat' %}">Add A Cat</a></li>

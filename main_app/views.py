@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.http import HttpResponse
 
 from .models import Cat
+
+from .forms import AppointmentForm
 
 # Create your views here.
 
@@ -33,4 +35,14 @@ def home(request):
 
 def cats_details(request, cat_id):
     cats = Cat.objects.get(id=cat_id)
-    return render(request, 'cats/details.html', {'cats': cats})
+    print(cats.appointment_set.all())
+    appointment_form = AppointmentForm()
+    return render(request, 'cats/details.html', {'cats': cats, 'appointment_form': appointment_form})
+
+def add_appointment(request, cat_id):
+    form = AppointmentForm(request.POST)
+    if form.is_valid():
+        new_appointment = form.save(commit=False)
+        new_appointment.cat_id = cat_id
+        new_appointment.save()
+    return redirect('details', cat_id=cat_id)

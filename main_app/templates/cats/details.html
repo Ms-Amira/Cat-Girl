@@ -8,12 +8,13 @@
     <title>Foster Cats</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
     <header class="navbar-fixed">
         <nav>
           <div class="nav-wrapper deep-purple accent-2">
-            <a class="brand-logo left"><img class="brand-logo" src="https://i.imgur.com/Ryz76fa.jpg" width="58"></a>
+            <a class="brand-logo left"><img id="brand-logo" src="https://i.imgur.com/Ryz76fa.jpg" width="58"></a>
             <ul class="right">
                 <li><a href="/">Home</a></li>
                 <li><a href="/cats">View My Babies</a></li>
@@ -21,23 +22,62 @@
           </div>
         </nav>
       </header>
-      
-
-    <div>
+      <div class="row">
+        <div class="col s6">
+          <div class="card">
+            <div class="card-content center">
         <h1>{{ cats.name }}</h1>
-        <img src="{{cats.image}}">
+        <div>
+          <img class="responsive-img" src="{{cats.image}}">
+        </div>
         <p>"{{cats.temperment}}"</p>
-    </div>
+ 
 
 
 <div class="card-action">
   <a href="{% url 'cats_update' cats.id %}">Edit</a>
   <a href="{% url 'cats_delete' cats.id %}">Delete</a>
 </div>
-
+</div>
+</div>
+<div class="col s6">
+  <form action="{% url 'add_appointment' cats.id %}" method="POST">
+    {% csrf_token %}
+    {{ appointment_form.as_p }}
+    <!-- <input type="submit" class="btn" value="Add Feeding"> -->
+    <button class="btn-floating btn-large pulse-light pink" type="submit"><i class="material-icons">Add</i></button>
+  </form>
+  <table class="striped">
+    <thead>
+      <tr><th>Date</th><th>Visit</th></tr>
+    </thead>
+    <tbody>
+      {% for appointment in cats.appointment_set.all %}
+        <tr>
+          <td>{{appointment.date}}</td>
+          <td>{{appointment.get_visit_display}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+<script>
+  const dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+  
+  const selectEl = document.getElementById('id_visit');
+  M.FormSelect.init(selectEl);
+</script>
+<footer class="page-footer deep-purple accent-2">
+    <div class="right">All Rights Reserved, &copy; 2023 Cat Girl &nbsp;</div>
+  </footer>
   </body>
   </html>
-  <!-- <footer class="page-footer panel deep-purple accent-2">
-      <div class="right">All Rights Reserved, &copy; 2023 Cat Girl &nbsp;</div>
-    </footer> -->
 <div align="center" style="z-index:9;visibility:visible;"><a href="https://www.totallyfreecursors.com/" target="_blank" class="tfc"></a></div><style>HTML,BODY{cursor: url("https://downloads.totallyfreecursors.com/cursor_files/cat11.ani"), url("https://downloads.totallyfreecursors.com/thumbnails/cat12.gif"), auto;}</style>
