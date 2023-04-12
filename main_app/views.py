@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 
 from django.http import HttpResponse
 
-from .models import Cat
+from .models import Cat, Play_Date
 
 from .forms import AppointmentForm
 
@@ -12,7 +13,7 @@ from .forms import AppointmentForm
 
 class CreateCat(CreateView):
     model = Cat
-    fields = '__all__'
+    fields = ['name', 'breed', 'description', 'age']
     success_url = '/cats/'
 
 class UpdateCat(UpdateView):
@@ -35,9 +36,9 @@ def home(request):
 
 def cats_details(request, cat_id):
     cats = Cat.objects.get(id=cat_id)
-    print(cats.appointment_set.all())
+    no_play_date = Play_Date.objects.exclude(id_in = cats.play.all().values_list('id'))
     appointment_form = AppointmentForm()
-    return render(request, 'cats/details.html', {'cats': cats, 'appointment_form': appointment_form})
+    return render(request, 'cats/details.html', {'cats': cats, 'appointment_form': appointment_form, 'play': no_play_date})
 
 def add_appointment(request, cat_id):
     form = AppointmentForm(request.POST)
@@ -46,3 +47,25 @@ def add_appointment(request, cat_id):
         new_appointment.cat_id = cat_id
         new_appointment.save()
     return redirect('details', cat_id=cat_id)
+
+class PlayList(ListView):
+    model = Play_Date
+
+
+class PlayDetail(DetailView):
+    model = Play_Date
+
+
+class PlayCreate(CreateView):
+    model = Play_Date
+    fields = '__all__'
+
+
+class PlayUpdate(UpdateView):
+    model = Play_Date
+    fields = ['name']
+
+
+class PlayDelete(DeleteView):
+    model = Play_Date
+    success_url = '/play/'
