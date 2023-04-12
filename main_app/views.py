@@ -36,7 +36,7 @@ def home(request):
 
 def cats_details(request, cat_id):
     cats = Cat.objects.get(id=cat_id)
-    no_play_date = Play_Date.objects.exclude(id_in = cats.play.all().values_list('id'))
+    no_play_date = Play_Date.objects.exclude(id__in = cats.play.all().values_list('id'))
     appointment_form = AppointmentForm()
     return render(request, 'cats/details.html', {'cats': cats, 'appointment_form': appointment_form, 'play': no_play_date})
 
@@ -46,6 +46,10 @@ def add_appointment(request, cat_id):
         new_appointment = form.save(commit=False)
         new_appointment.cat_id = cat_id
         new_appointment.save()
+    return redirect('details', cat_id=cat_id)
+
+def assoc_date(request, cat_id, date_id):
+    Cat.objects.get(id=cat_id).play.add(date_id)
     return redirect('details', cat_id=cat_id)
 
 class PlayList(ListView):
