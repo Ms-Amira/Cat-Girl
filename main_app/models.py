@@ -8,8 +8,9 @@ class Play_Date(models.Model):
     
     def __str__(self):
         return self.name
+    
     def get_absolute_url(self):
-        return reverse('play_detail', kwargs={'pk': self.pk})
+        return reverse('play_detail', kwargs={'pk': self.id})
 
 class Cat(models.Model):
     name = models.CharField(max_length=100)

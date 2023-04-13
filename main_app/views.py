@@ -13,7 +13,7 @@ from .forms import AppointmentForm
 
 class CreateCat(CreateView):
     model = Cat
-    fields = ['name', 'breed', 'description', 'age']
+    fields = ['name', 'breed', 'description', 'age', 'image', 'temperment']
     success_url = '/cats/'
 
 class UpdateCat(UpdateView):
