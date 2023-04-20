@@ -5,6 +5,7 @@ from django.urls import reverse
 
 class Play_Date(models.Model):
     name = models.CharField(max_length=50)
+    image = models.TextField()
     
     def __str__(self):
         return self.name

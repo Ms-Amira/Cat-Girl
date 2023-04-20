@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 
 from django.http import HttpResponse
 
-from .models import Cat, Play_Date
+from .models import Cat, Play_Date, Appointment
 
 from .forms import AppointmentForm
 
@@ -48,6 +48,10 @@ def add_appointment(request, cat_id):
         new_appointment.save()
     return redirect('details', cat_id=cat_id)
 
+def delete_appointment(request, cat_id, appointment_id):
+    Appointment.objects.filter(id=appointment_id).delete()
+    return redirect('details', cat_id=cat_id)
+
 def assoc_date(request, cat_id, date_id):
     Cat.objects.get(id=cat_id).play.add(date_id)
     return redirect('details', cat_id=cat_id)
@@ -67,7 +71,7 @@ class PlayCreate(CreateView):
 
 class PlayUpdate(UpdateView):
     model = Play_Date
-    fields = ['name']
+    fields = ['name', 'image']
 
 
 class PlayDelete(DeleteView):

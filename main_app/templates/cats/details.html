@@ -23,7 +23,7 @@
         </nav>
       </header>
       <div class="container">
-        <div class="row">
+        <div class="row pic">
           <div class="col s6">
             <div class="card cat-image-card" style="margin-bottom: 20px;">
               <div class="card-content center">
@@ -43,6 +43,7 @@
           </div>
           <div class="col s6">
             <div class="card appointment-card">
+              <h2>Appointments</h2>
               <div class="card-content">
                 <form action="{% url 'add_appointment' cats.id %}" method="POST">
                   {% csrf_token %}
@@ -54,6 +55,7 @@
                     <tr>
                       <th>Date</th>
                       <th>Visit</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -61,6 +63,7 @@
                     <tr>
                       <td>{{appointment.date}}</td>
                       <td>{{appointment.get_visit_display}}</td>
+                      <td><a href=" {% url 'delete_appointment' cats.id appointment.id %} ">Delete</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
@@ -69,50 +72,58 @@
             </div>
           </div>
         </div>
-      </div>
-      
-<div class="row">
-  <div class="col s6">
-    <h3>{{ cats.name }}'s Play Date</h3>
-    {% if cats.play.count %}
-      {% for date in cats.play.all %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-             {{ date.name }}
-             <!-- <img class="responsive-img" src='{{ cats.image }}' alt="url">  -->
-            </span>
+        
+        <div class="row">
+          <div class="col s6">
+            <h3>{{ cats.name }}'s Play Date</h3>
+            {% if cats.play.count %}
+            {% for date in cats.play.all %}
+            
+            {% if cats.name == date.name %}
+            {% else %}
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">
+                  <h4>{{ date.name }}</h4>
+                </span>
+                <img class="responsive-img" src='{{ date.image }}' alt="url"> 
+              </div>
+            </div>
+            {% endif %}
+            
+            {% endfor %}
+            {% else %}
+            <h5>No Play Date :(</h5>
+            {% endif %}
           </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <h5>No Play Date :(</h5>
-    {% endif %}
+          <div class="col s6">
+            <h3>Available Play Dates</h3>
+            {% if play.count %}
+            {% for date in play.all %}
+            {% if cats.name == date.name %}
+            {% else %}
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">
+                  {{ date.name }}
+                </span>
+              </div>
+              <div class="card-action">
+                <form action="{% url 'assoc_date' cats.id date.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn-floating btn-large pulse-light pink" type="submit"><i class="material-icons">♡</i></button>
+                </form>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <h5>{{cats.name}} Already Has All Available Play Dates</h5>
+            {% endif %}
   </div>
-  <div class="col s6">
-    <h3>Available Play Dates</h3>
-    {% if play.count %}
-      {% for date in play.all %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              {{ date.name }}
-             </span>
-          </div>
-          <div class="card-action">
-            <form action="{% url 'assoc_date' cats.id date.id %}" method="post">
-              {% csrf_token %}
-              <button class="btn-floating btn-large pulse-light pink" type="submit"><i class="material-icons">♡</i></button>
-            </form>
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <h5>{{cats.name}} Already Has All Available Play Dates</h5>
-    {% endif %}
   </div>
-<script>
-  const dateEl = document.getElementById('id_date');
+  <script>
+    const dateEl = document.getElementById('id_date');
   M.Datepicker.init(dateEl, {
     format: 'yyyy-mm-dd',
     defaultDate: new Date(),

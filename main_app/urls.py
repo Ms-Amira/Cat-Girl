@@ -9,6 +9,7 @@ urlpatterns = [
     path('cats/<int:pk>/update/', views.UpdateCat.as_view(), name='cats_update'),
     path('cats/<int:pk>/delete/', views.DeleteCat.as_view(), name='cats_delete'),
     path('cats/<int:cat_id>/add_appointment/', views.add_appointment, name='add_appointment'),
+    path('cats/<int:cat_id>/delete_appointment/<int:appointment_id>', views.delete_appointment, name='delete_appointment'),
     path('cats/<int:cat_id>/assoc_date/<int:date_id>/', views.assoc_date, name='assoc_date'),
     path('play/', views.PlayList.as_view(), name='play_index'),
     path('play/<int:pk>/', views.PlayDetail.as_view(), name='play_detail'),
