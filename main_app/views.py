@@ -18,7 +18,7 @@ class CreateCat(CreateView):
 
 class UpdateCat(UpdateView):
     model = Cat
-    fields = ['breed', 'description', 'age']
+    fields = ['breed', 'description', 'age', 'temperment']
 
 class DeleteCat(DeleteView):
     model = Cat
