@@ -75,20 +75,20 @@ WSGI_APPLICATION = 'cats.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'cats',
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.config(
-    
-        default='postgres://cat_girl_db_user:Zcx3daYUsK6rvHpPtM67t1padiLWTOCs@dpg-cjrrougjbais73fpi7bg-a/cat_girl_db',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cats',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+    
+#         default='postgres://cat_girl_db_user:Zcx3daYUsK6rvHpPtM67t1padiLWTOCs@dpg-cjrrougjbais73fpi7bg-a/cat_girl_db',
+#         conn_max_age=600
+#     )
+# }
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
@@ -134,7 +134,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
