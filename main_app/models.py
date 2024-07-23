@@ -4,7 +4,7 @@ from django.urls import reverse
 # Create your models here.
 
 class Play_Date(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.TextField(max_length=50)
     image = models.TextField()
     
     def __str__(self):
@@ -14,8 +14,8 @@ class Play_Date(models.Model):
         return reverse('play_detail', kwargs={'pk': self.id})
 
 class Cat(models.Model):
-    name = models.CharField(max_length=100)
-    breed = models.CharField(max_length=100)
+    name = models.TextField(max_length=100)
+    breed = models.TextField(max_length=100)
     description = models.TextField(max_length=250)
     age = models.IntegerField()
     image = models.TextField()
@@ -37,7 +37,7 @@ VISITS = (
 
 class Appointment(models.Model):
     date = models.DateField('Visit Date')
-    visit = models.CharField(choices=VISITS, default=VISITS[0][0])
+    visit = models.TextField(choices=VISITS, default=VISITS[0][0])
 
     cat = models.ForeignKey(Cat, on_delete=models.CASCADE)
 
